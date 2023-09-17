@@ -8,7 +8,7 @@ FROM openjdk:11
 # install
 
 # label for the image
-LABEL Description="Api2 Server" Version="0.0.1"
+LABEL Description="Api1 Server" Version="0.0.1"
 
 # the version of the archive
 ARG VERSION=0.0.1
