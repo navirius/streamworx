@@ -1,0 +1,29 @@
+services:
+  api2:
+    build: api2
+    restart: always
+    environment:
+      - MYSQL_HOST: 127.0.0.1
+      - MYSQL_USER: root
+      - MYSQL_PASSWORD: root
+    ports:
+      - 9090:9090
+  api1:
+    build: api1
+    restart: always
+    environment:
+      - API2_BASE_HOST: http://127.0.0.1:9090
+      - API3_BASE_HOST: http://127.0.0.1
+    ports:
+      - 8585:8585
+    depends_on:
+      api2:
+        condition: service_healthy
+  apigateway:
+    build: apigateway
+    restart: always
+    ports:
+      - 8989:8989
+    depends_on:
+      api1:
+        condition: service_healthy
