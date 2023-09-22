@@ -30,11 +30,13 @@ public class Api1ServiceImpl implements Api1Service {
     UserRepository userRepository;
     @Override
     public List<Api1DataResponse> getData(){
-        List<UserEntity> allUsers = userRepository.findAll();
-        ResponseEntity<List<Api3DataResponse>> api3Response = api3FeignService.getAllApi3Data();
+        List<UserEntity> allUsers = new ArrayList<>();
+        userRepository.findAll().forEach(allUsers::add);
+
+        List<Api3DataResponse> api3Response = api3FeignService.getAllApi3Data();
         List<Api1DataResponse> result = new ArrayList<>();
-        if(api3Response!=null && api3Response.getBody()!=null){
-            List<Api3DataResponse> api3DataResponses = api3Response.getBody();
+        if(api3Response!=null ){
+            List<Api3DataResponse> api3DataResponses = api3Response;
 
             for(UserEntity userEntity:allUsers){
                 Api1DataResponse api1DataResponse = new Api1DataResponse();

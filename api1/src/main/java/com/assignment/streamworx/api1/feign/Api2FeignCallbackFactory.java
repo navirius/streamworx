@@ -49,6 +49,11 @@ public class Api2FeignCallbackFactory implements FallbackFactory<Api2FeignServic
             public ResponseEntity<String> getUserData(Api2UserDataRequest request) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
             }
+
+            @Override
+            public ResponseEntity<String> getAllUserDataPost(Integer userId) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
         };
     }
 }

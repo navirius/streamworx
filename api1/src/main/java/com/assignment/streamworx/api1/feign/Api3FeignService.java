@@ -9,6 +9,7 @@ import java.util.List;
 
 @FeignClient(name="api3-service", url = "${api3base-url}", fallback = Api3FeignCallbackFactory.class)
 public interface Api3FeignService {
-    @GetMapping("/getall")
-    ResponseEntity<List<Api3DataResponse>> getAllApi3Data();
+
+    @GetMapping("/todos")
+    List<Api3DataResponse> getAllApi3Data();
 }
