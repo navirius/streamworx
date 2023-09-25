@@ -1,2 +1,5 @@
 */.idea/
 */.git/
+apigateway/target/
+api1/target/
+api2/target/
