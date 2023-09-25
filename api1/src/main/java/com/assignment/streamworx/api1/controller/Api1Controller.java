@@ -11,11 +11,12 @@ import com.assignment.streamworx.api1.service.Api1Service;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api1/")
 public class Api1Controller {
 
@@ -49,6 +50,13 @@ public class Api1Controller {
     public ResponseEntity addJsonData(@RequestBody List<UserEntity> dataUser){
         userRepository.saveAll(dataUser);
         return ResponseEntity.ok().body(null);
+    }
+
+    @Operation(description = "get redis data")
+    @PostMapping("getRedisData")
+    public ResponseEntity getRedisData(){
+        Iterable<UserEntity> listUserEntity = userRepository.findAll();
+        return ResponseEntity.ok().body(listUserEntity);
     }
 
     @Operation(description = "test api2 fetch data")

@@ -45,7 +45,7 @@ services:
     restart: always
     environment:
       API2_BASE_URL: http://api2:9090
-      EUREKA_SERVICE_URL: http://apigateway:8585
+      EUREKA_HOSTNAME: apigateway
       API1_HOST: api1
       REDIS_DB_HOST: redis-server
     ports:
