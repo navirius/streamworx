@@ -3,24 +3,30 @@
 # Version 0.0.1
 
 #jdk image
-FROM openjdk:11
+FROM maven:3.6.3-adoptopenjdk-11
 
-# install
+WORKDIR /home/app
+#workarund to disable cache 
+RUN rm -r /home/app
 
-# label for the image
-LABEL Description="Gateway Eureka Server" Version="0.0.1"
-
-# the version of the archive
+#COPY . /home/app
+#RUN ls --recursive /home/app
+#RUN mvn -f /home/app/pom.xml clean package -DskipTests
+EXPOSE 8585
 ARG VERSION=0.0.1
 
+COPY target/apigateway-${VERSION}-SNAPSHOT.jar /home/app/app.jar
+
+# label for the image
+LABEL Description="API Gateway Server" Version="0.0.1"
+
+# the version of the archive
+
 # mount the temp volume
-VOLUME /tmp
+#VOLUME /tmp
 
 # Add the service as app.jar
-ADD target/apigateway-${VERSION}-SNAPSHOT.jar app.jar
-
-# touch the archive for timestamp
-RUN sh -c 'touch /app.jar'
+#ADD apigateway-${VERSION}-SNAPSHOT.jar app.jar
 
 # entrypoint to the image on run
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/home/app/app.jar"]

@@ -3,7 +3,6 @@ package com.assignment.streamworx.api1.service.impl;
 import com.assignment.streamworx.api1.entity.UserEntity;
 import com.assignment.streamworx.api1.feign.Api3FeignService;
 import com.assignment.streamworx.api1.model.Api1DataResponse;
-import com.assignment.streamworx.api1.model.Api2UserDataResponse;
 import com.assignment.streamworx.api1.model.Api2UserPostDataResponse;
 import com.assignment.streamworx.api1.model.Api3DataResponse;
 import com.assignment.streamworx.api1.repository.UserRepository;

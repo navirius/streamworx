@@ -1,5 +1,6 @@
 package com.assignment.streamworx.api2.controller;
 
+import com.assignment.streamworx.api2.model.ListUserPost;
 import com.assignment.streamworx.api2.model.UserPostRequest;
 import com.assignment.streamworx.api2.model.UserPostResponse;
 import com.assignment.streamworx.api2.service.UserPostService;
@@ -8,10 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -62,10 +65,16 @@ public class UserPostController {
     @Operation(description = "API for get all user post data")
     @GetMapping(value = "getpost", produces = {"application/xml", "text/xml"})
     @ResponseBody
-    public UserPostResponse getUserPostData(@RequestParam("postId")Integer postId){
+    public ListUserPost getUserPostData(@RequestParam("postId")Integer postId){
         try {
             UserPostResponse dataResult = userPostService.getUserPost(postId);
-            return dataResult;
+            ListUserPost result = new ListUserPost();
+            result.setRow(new ArrayList<>(){
+                {
+                    add(dataResult);
+                }
+            });
+            return result;
         }
         catch (Exception ex){
             log.error("ERROR>>>", ex);
@@ -76,10 +85,29 @@ public class UserPostController {
     @Operation(description = "API for get user post data")
     @GetMapping(value = "allpostuser", produces = {"application/xml", "text/xml"})
     @ResponseBody
-    public List<UserPostResponse> getAllUserPostData(@RequestParam("userId")Integer userId){
+    public ListUserPost getAllUserPostData(@RequestParam("userId")Integer userId){
         try {
             List<UserPostResponse> dataResult = userPostService.getAllUserPost(userId);
-            return dataResult;
+            ListUserPost result = new ListUserPost();
+            result.setRow(dataResult);
+            return result;
+        }
+        catch (Exception ex){
+            log.error("ERROR>>>", ex);
+            return null;
+        }
+    }
+
+
+    @Operation(description = "API for get all post data")
+    @GetMapping(value = "allpost", produces = {"application/xml", "text/xml", MediaType.APPLICATION_XML_VALUE})
+    @ResponseBody
+    public ListUserPost getAllPostData(){
+        try {
+            List<UserPostResponse> dataResult = userPostService.getAllPost();
+            ListUserPost result = new ListUserPost();
+            result.setRow(dataResult);
+            return result;
         }
         catch (Exception ex){
             log.error("ERROR>>>", ex);

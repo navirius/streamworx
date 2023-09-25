@@ -1,0 +1,1 @@
+call mvn11 clean package -DskipTests

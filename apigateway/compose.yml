@@ -1,0 +1,11 @@
+version: '3'
+services:
+  apigateway:
+    build: .
+    restart: always
+    ports:
+      - 8989:8989
+    networks:
+      - api1-networks
+networks:
+  api1-networks:

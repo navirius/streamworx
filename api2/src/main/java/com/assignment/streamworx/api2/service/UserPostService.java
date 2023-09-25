@@ -11,4 +11,5 @@ public interface UserPostService {
     void updateUserPost(UserPostRequest request);
     UserPostResponse getUserPost(Integer postId);
     List<UserPostResponse> getAllUserPost(Integer userId);
+    List<UserPostResponse> getAllPost();
 }

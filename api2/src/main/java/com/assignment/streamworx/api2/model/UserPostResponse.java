@@ -3,12 +3,12 @@ package com.assignment.streamworx.api2.model;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
 @Data
 public class UserPostResponse {
-    private Integer id;
     private int userid;
+    private Integer id;
     private String title;
     private String body;
 }

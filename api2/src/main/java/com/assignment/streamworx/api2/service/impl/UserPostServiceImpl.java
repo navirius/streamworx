@@ -78,4 +78,18 @@ public class UserPostServiceImpl implements UserPostService {
 
         return allPostResponse;
     }
+
+    @Override
+    public List<UserPostResponse> getAllPost() {
+        List<PostEntity> allPost = postRepository.findAll();
+        List<UserPostResponse> allPostResponse = new ArrayList<>();
+        for(PostEntity post:allPost){
+            UserPostResponse response = new UserPostResponse();
+            BeanUtils.copyProperties(post, response);
+
+            allPostResponse.add(response);
+        }
+
+        return allPostResponse;
+    }
 }

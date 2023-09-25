@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name="api3-service", url = "${api3base-url}", fallback = Api3FeignCallbackFactory.class)
+@FeignClient(name="api3-service", url = "https://jsonplaceholder.typicode.com", fallbackFactory = Api3FeignCallbackFactory.class)
 public interface Api3FeignService {
 
     @GetMapping("/todos")

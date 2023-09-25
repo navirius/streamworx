@@ -1,8 +1,6 @@
 package com.assignment.streamworx.api1.service;
 
 import com.assignment.streamworx.api1.feign.Api2FeignService;
-import com.assignment.streamworx.api1.model.Api2UserDataRequest;
-import com.assignment.streamworx.api1.model.Api2UserDataResponse;
 import com.assignment.streamworx.api1.model.Api2UserPostDataResponse;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +12,5 @@ import java.util.List;
 
 
 public interface Api2Service {
-    Api2UserDataResponse getUserData(Integer userId);
     List<Api2UserPostDataResponse> getAllUserPost(Integer userId);
 }

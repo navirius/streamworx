@@ -1,8 +1,11 @@
 package com.assignment.streamworx.api2.entity;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@AutoConfiguration
 @Entity
 @Table(name = "post", schema = "api2", catalog = "")
 public class PostEntity {
