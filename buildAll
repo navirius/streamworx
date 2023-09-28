@@ -1,0 +1,10 @@
+#!/bin/zsh
+cd api1/
+mvn clean package -DskipTests
+cd ..
+cd api2/
+mvn clean package -DskipTests
+cd ..
+cd apigateway/
+mvn clean package -DskipTests
+docker compose up --progress=plain
